@@ -2,7 +2,7 @@
 //  VisionDexApp.swift
 //  VisionDex
 //
-//  Created by Gottlieb-Zimmermann Niklas - s2310237011 on 21.11.25.
+//  Created by Gottlieb-Zimmermann Niklas 
 //
 
 import SwiftUI
