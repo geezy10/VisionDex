@@ -14,13 +14,13 @@ struct ImmersiveView: View {
     var body: some View {
         RealityView { content in
             // Add the initial RealityKit content
-            if let immersiveContentEntity = try? await Entity(named: "Immersive", in: realityKitContentBundle) {
-                immersiveContentEntity.position [0, 0, -2, 0]
+            if let immersiveContentEntity = try? await Entity(named: "Pokescene", in: realityKitContentBundle) {
                 content.add(immersiveContentEntity)
             }
         }
-        .gesture(SpatialTapGesture().targetedToAnyEntity().onEnded) { value in
-        print("Pokemon angeklickt!")}
+        .gesture(SpatialTapGesture().targetedToAnyEntity().onEnded{ value in
+            print("Pokemon angeklickt!")
+        })
     }
 }
 
