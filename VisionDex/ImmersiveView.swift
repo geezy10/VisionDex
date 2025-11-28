@@ -15,6 +15,8 @@ struct ImmersiveView: View {
         RealityView { content in
             // Add the initial RealityKit content
             if let immersiveContentEntity = try? await Entity(named: "Pokescene", in: realityKitContentBundle) {
+                immersiveContentEntity.children.first?.children.forEach({ $0.isEnabled = false })
+                immersiveContentEntity.findEntity(named: "glumanda")?.isEnabled = true
                 content.add(immersiveContentEntity)
             }
         }

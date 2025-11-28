@@ -49,7 +49,6 @@ def Xform "Root"
     }
 
     def "glumanda" (
-        active = true
         customData = {
             float3 rotationEulerHint = (-1.5707964, 0, 0)
         }
