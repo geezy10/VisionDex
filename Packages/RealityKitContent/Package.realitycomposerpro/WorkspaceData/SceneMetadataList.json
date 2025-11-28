@@ -15,6 +15,16 @@
     "objectMetadataList" : [
       [
         "53328977-43B3-425E-94CE-FE15BDA043BA",
+        "Root",
+        "pikachu"
+      ],
+      {
+        "disallowsFraming" : false,
+        "isExpanded" : false,
+        "isLocked" : false
+      },
+      [
+        "53328977-43B3-425E-94CE-FE15BDA043BA",
         "Root"
       ],
       {

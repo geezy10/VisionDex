@@ -9,8 +9,8 @@ struct ContentView: View {
     var body: some View {
         RealityView { content in
             // Add the initial RealityKit content
-            if let scene = try? await Entity(named: "Dragonite_Official", in: realityKitContentBundle) {
-                scene.findEntity(named: "Dragonite_Official")
+            if let scene = try? await Entity(named: "glumanda", in: realityKitContentBundle) {
+                scene.findEntity(named: "glumanda")
                 content.add(scene)
             }
         } update: { content in
