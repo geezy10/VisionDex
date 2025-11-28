@@ -15,12 +15,12 @@ struct ImmersiveView: View {
         RealityView { content in
             // Add the initial RealityKit content
             if let immersiveContentEntity = try? await Entity(named: "Immersive", in: realityKitContentBundle) {
+                immersiveContentEntity.position [0, 0, -2, 0]
                 content.add(immersiveContentEntity)
-
-                // Put skybox here.  See example in World project available at
-                // https://developer.apple.com/
             }
         }
+        .gesture(SpatialTapGesture().targetedToAnyEntity().onEnded) { value in
+        print("Pokemon angeklickt!")}
     }
 }
 
