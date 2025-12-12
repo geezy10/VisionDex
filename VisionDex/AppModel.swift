@@ -24,7 +24,7 @@ class AppModel {
         PokemonData(name: "Pikachu", imageName: "pikachu"),
         PokemonData(name: "Bisasam", imageName: "bisasam"),
         PokemonData(name: "Glumanda", imageName: "glumanda"),
-        PokemonData(name: "Shiggy", imageName: "shiggy"),
+        PokemonData(name: "Schiggy", imageName: "schiggy"),
         PokemonData(name: "Relaxo", imageName: "relaxo"),
         PokemonData(name: "Dragoran", imageName: "dragoran")
     ]
