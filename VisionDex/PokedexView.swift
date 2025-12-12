@@ -36,7 +36,7 @@ struct PokedexView: View {
                     Spacer()
                     
                     if pokemon.isCaught {
-                        Image(systemName: "cube_transparent")
+                        Image(pokemon.imageName)
                             .font(.largeTitle)
                     }
                 }
