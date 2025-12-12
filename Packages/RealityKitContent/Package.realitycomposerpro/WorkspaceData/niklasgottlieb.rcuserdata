@@ -1,7 +1,8 @@
 {
   "advancedEditorSelectedIdentifier" : "ProjectBrowser",
   "openSceneRelativePaths" : [
-    "Immersive.usda"
+    "Immersive.usda",
+    "Pokescene.usda"
   ],
   "recentIdentifiers" : {
     "AF09ED6F-1707-48FD-8720-65B998362C09" : [
@@ -9,6 +10,52 @@
     ]
   },
   "sceneCameraHistory" : {
+    "4FEAC642-E270-404D-9EE3-C5512ED37D9A" : [
+      {
+        "date" : 787228699.376891,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0.7071069,
+          -0.70710677,
+          0,
+          0,
+          0.70710677,
+          0.7071069,
+          0,
+          0,
+          7.688079,
+          7.782973,
+          1
+        ]
+      },
+      {
+        "date" : 787228640.506369,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0.7071069,
+          -0.70710677,
+          0,
+          0,
+          0.70710677,
+          0.7071069,
+          0,
+          0,
+          7.8748956,
+          7.8748956,
+          1
+        ]
+      }
+    ],
     "AF09ED6F-1707-48FD-8720-65B998362C09" : [
       {
         "date" : 786038521.72454,

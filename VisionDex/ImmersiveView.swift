@@ -66,6 +66,7 @@ struct ImmersiveView: View {
             DragGesture()
                 .targetedToAnyEntity()
                 .onChanged { value in
+                    guard value.entity.name == "Pokemon_Basic_Pokeball" else { return }
                     // sticky ball
                     var entity = value.entity
                     if var phys = entity.components[PhysicsBodyComponent.self] {
@@ -76,9 +77,11 @@ struct ImmersiveView: View {
                 }
                 .onEnded { value in
                     var entity = value.entity
+                    guard value.entity.name == "Pokemon_Basic_Pokeball" else { return }
+
                     
                     if var phys = entity.components[PhysicsBodyComponent.self] {
-                        //physiks on
+                        //physics on
                         phys.mode = .dynamic
                         entity.components.set(phys)
                         
@@ -112,8 +115,16 @@ struct ImmersiveView: View {
                     
                 }
         ).task { //fingertracking for petting the dawg
-            try? await arSession.run([handTrackingProvider])
-            await processHandUpdates()
+            if HandTrackingProvider.isSupported {
+                do {
+                    print("start hand tracking")
+                    try? await arSession.run([handTrackingProvider])
+                    await processHandUpdates()
+                } catch { print("errrrrrooooorrr")}
+            } else {
+                print("we are in the simulator")
+            }
+
         }
     }
     
