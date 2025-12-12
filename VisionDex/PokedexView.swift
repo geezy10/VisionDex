@@ -4,7 +4,7 @@
 //
 //  Created by Gruber Raphael - s2310237024 on 28.11.25.
 //
-/*import SwiftUI
+import SwiftUI
 
 struct PokedexView: View {
     @Environment(AppModel.self) var appModel
@@ -15,24 +15,42 @@ struct PokedexView: View {
                 HStack {
                     Image(systemName: pokemon.isCaught ? "checkmark.circle.fill" : "circle")
                         .foregroundStyle(pokemon.isCaught ? .green : .gray)
+                        .font(.title2)
                     
                     VStack(alignment: .leading) {
                         Text(pokemon.name)
                             .font(.headline)
-                            .foregroundStyle(pokemon.isCaught ? .primary : .secondary)
+                            .strikethrough(!pokemon.isCaught)
+                            .opacity(pokemon.isCaught ? 1.0 : 0.5)
                         
                         if pokemon.isCaught {
-                            Text(pokemon.description)
+                            Text("Gefangen!")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                         } else {
-                            Text("???")
+                            Text("Pokemon unbekannt")
                                 .font(.caption)
+                                .foregroundStyle(.secondary)
                         }
+                    }
+                    Spacer()
+                    
+                    if pokemon.isCaught {
+                        Image(systemName: "cube_transparent")
+                            .font(.largeTitle)
+                    }
+                }
+                .padding(.vertical, 4)
+            }
+            .navigationTitle("Pokédex")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Schließen") {
+                        appModel.isPokedexOpen = false
                     }
                 }
             }
-            .navigationTitle("Pokédex")
         }
+        .frame(minWidth: 400, minHeight: 600)
     }
-}*/
+}
