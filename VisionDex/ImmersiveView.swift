@@ -23,6 +23,9 @@ struct ImmersiveView: View {
     var body: some View {
         RealityView { content in
             content.add(rootEntity)
+            let floor = createFloor()
+            rootEntity.addChild(floor)
+            
             
             
             if let scene = try? await Entity(named: "Pokescene", in: realityKitContentBundle) {
@@ -158,7 +161,36 @@ struct ImmersiveView: View {
         }
     }
     
-  
+    func createFloor() -> Entity {
+            let floor = Entity()
+            let size: Float = 100.0
+
+            let shape = ShapeResource.generateBox(
+                width: size,
+                height: 0.02,
+                depth: size
+            )
+
+            floor.components.set(
+                CollisionComponent(shapes: [shape])
+            )
+
+            floor.components.set(
+                PhysicsBodyComponent(
+                    shapes: [shape],
+                    mass: 1.0,
+                    material: PhysicsMaterialResource.generate(
+                        friction: 0.9,
+                        restitution: 0.0
+                    ),
+                    mode: .static
+                )
+            )
+
+            floor.position = SIMD3(0, 0.0, 0)
+            return floor
+        }
+
     func processHandUpdates() async {
         for await update in handTrackingProvider.anchorUpdates {
             let handAnchor = update.anchor
