@@ -37,7 +37,8 @@ struct ImmersiveView: View {
                 if let ball = scene.findEntity(named: "pokeball") {
                     ball.components.set(InputTargetComponent())
                     ball.components.set(CollisionComponent(shapes: [.generateSphere(radius: 0.04)]))
-                    var phys = PhysicsBodyComponent(mode: .dynamic)
+                    var phys = PhysicsBodyComponent(mode: .kinematic)
+//                    phys.isAffectedByGravity = false
                     phys.massProperties.mass = 0.2
                     ball.components.set(phys)
                 }
