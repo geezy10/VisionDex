@@ -26,7 +26,7 @@ struct ImmersiveView: View {
                 
                 //setup pokemon
                 if let glumanda = scene.findEntity(named: "glumanda") {
-                    var phys = PhysicsBodyComponent(mode: .static)
+                    var phys = PhysicsBodyComponent(mode: .kinematic)
                     glumanda.components.set(phys)
                     if glumanda.components[CollisionComponent.self] == nil {
                         glumanda.generateCollisionShapes(recursive: true)
@@ -66,9 +66,9 @@ struct ImmersiveView: View {
             DragGesture()
                 .targetedToAnyEntity()
                 .onChanged { value in
-                    guard value.entity.name == "Pokemon_Basic_Pokeball" else { return }
+                    guard value.entity.name == "pokeball" else { return }
                     // sticky ball
-                    var entity = value.entity
+                    let entity = value.entity
                     if var phys = entity.components[PhysicsBodyComponent.self] {
                         phys.mode = .kinematic
                         entity.components.set(phys)
@@ -76,8 +76,8 @@ struct ImmersiveView: View {
                     entity.position = value.convert(value.location3D, from: .local, to: .scene)
                 }
                 .onEnded { value in
-                    var entity = value.entity
-                    guard value.entity.name == "Pokemon_Basic_Pokeball" else { return }
+                    let entity = value.entity
+                    guard value.entity.name == "pokeball" else { return }
 
                     
                     if var phys = entity.components[PhysicsBodyComponent.self] {
