@@ -16,6 +16,9 @@ struct ImmersiveView: View {
     @State private var handTrackingProvider = HandTrackingProvider()
     @State private var handEntities: [HandAnchor.Chirality: ModelEntity] = [:]
     @State private var rootEntity = Entity() // Container
+    
+    @State var willBegin: EventSubscription? = nil
+    @State var willEnd: EventSubscription? = nil
         
     var body: some View {
         RealityView { content in
@@ -35,12 +38,30 @@ struct ImmersiveView: View {
                 
                 // setup pokeball
                 if let ball = scene.findEntity(named: "pokeball") {
-                    ball.components.set(InputTargetComponent())
-                    ball.components.set(CollisionComponent(shapes: [.generateSphere(radius: 0.04)]))
+                    ball.components.set(InputTargetComponent(allowedInputTypes: .all))
+                   // ball.components.set(CollisionComponent(shapes: [.generateSphere(radius: 0.04)]))
+//                    var manipulation = ManipulationComponent()
+//                    manipulation.releaseBehavior = .stay
+//                    manipulation.dynamics.scalingBehavior = .none
+//                    ball.components.set(manipulation)
                     var phys = PhysicsBodyComponent(mode: .kinematic)
 //                    phys.isAffectedByGravity = false
                     phys.massProperties.mass = 0.2
                     ball.components.set(phys)
+                }
+                
+                willBegin = content.subscribe(to: ManipulationEvents.WillBegin.self) { event in
+                    if var physicsBody = event.entity.components[PhysicsBodyComponent.self] {
+                        physicsBody.mode = .kinematic
+                        event.entity.components.set(physicsBody)
+                    }
+                }
+                
+                willEnd = content.subscribe(to: ManipulationEvents.WillEnd.self) { event in
+                    if var physicsBody = event.entity.components[PhysicsBodyComponent.self] {
+                        physicsBody.mode = .dynamic
+                        event.entity.components.set(physicsBody)
+                    }
                 }
                 
                 rootEntity.addChild(scene)
@@ -62,6 +83,13 @@ struct ImmersiveView: View {
                 }
             }
         }
+        .gesture(SpatialTapGesture().targetedToAnyEntity().onEnded({ value in
+            if value.entity.name == "glumanda" {
+                var pokeball = rootEntity.findEntity(named: "pokeball")
+                pokeball?.position = [0, 0, 1]
+                pokeball?.components[PhysicsBodyComponent.self]?.mode = .kinematic
+            }
+        }))
        
         .gesture(
             DragGesture()
@@ -94,7 +122,7 @@ struct ImmersiveView: View {
                         let movementVector = predictedPos - currentPos
                         
                         //factor of the strength
-                        let throwForce: Float = 3.0
+                        let throwForce: Float = 0.01
                         
                         // change to SIMD<3> for realtiy kit
                         let velocityVector = SIMD3<Float>(
@@ -115,7 +143,8 @@ struct ImmersiveView: View {
                     }
                     
                 }
-        ).task { //fingertracking for petting the dawg
+        )
+        .task { //fingertracking for petting the dawg
             if HandTrackingProvider.isSupported {
                 do {
                     print("start hand tracking")

@@ -16,7 +16,7 @@ def Xform "Root"
     )
     {
         float3 xformOp:scale = (0.03, 0.03, 0.03)
-        float3 xformOp:translate = (0, 0, -2)
+        float3 xformOp:translate = (6, 0, -2)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def RealityKitComponent "Collider"
@@ -60,6 +60,17 @@ def Xform "Root"
         def RealityKitComponent "InputTarget"
         {
             uniform token info:id = "RealityKit.InputTarget"
+        }
+
+        over "SkinnedMeshes"
+        {
+            over "Sketchfab_model"
+            {
+                quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+                float3 xformOp:scale = (1, 1, 1)
+                float3 xformOp:translate = (0, 0, 1.2)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
         }
     }
 
@@ -365,8 +376,9 @@ def Xform "Root"
             def RealityKitStruct "Shape"
             {
                 float3 extent = (297.1178, 299.99988, 300.08667)
+                float height = 299.99988
                 float radius = 150.04333
-                token shapeType = "Sphere"
+                token shapeType = "Capsule"
 
                 def RealityKitStruct "pose"
                 {
@@ -378,7 +390,7 @@ def Xform "Root"
         def RealityKitComponent "RigidBody"
         {
             uniform token info:id = "RealityKit.RigidBody"
-            token motionType = "Dynamic"
+            token motionType = "Kinematic"
 
             def RealityKitStruct "massFrame"
             {

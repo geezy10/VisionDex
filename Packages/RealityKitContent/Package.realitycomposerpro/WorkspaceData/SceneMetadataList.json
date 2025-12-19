@@ -15,7 +15,59 @@
     "objectMetadataList" : [
       [
         "4FEAC642-E270-404D-9EE3-C5512ED37D9A",
+        "Root",
+        "relaxo"
+      ],
+      {
+        "disallowsFraming" : false,
+        "isExpanded" : false,
+        "isLocked" : false
+      },
+      [
+        "4FEAC642-E270-404D-9EE3-C5512ED37D9A",
         "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "4FEAC642-E270-404D-9EE3-C5512ED37D9A",
+        "Root",
+        "Dragonite_Official",
+        "SkinnedMeshes"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "4FEAC642-E270-404D-9EE3-C5512ED37D9A",
+        "Root",
+        "Dragonite_Official"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "4FEAC642-E270-404D-9EE3-C5512ED37D9A",
+        "Root",
+        "Dragonite_Official",
+        "SkinnedMeshes",
+        "Sketchfab_model",
+        "root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "4FEAC642-E270-404D-9EE3-C5512ED37D9A",
+        "Root",
+        "Dragonite_Official",
+        "SkinnedMeshes",
+        "Sketchfab_model"
       ],
       {
         "isExpanded" : true,
